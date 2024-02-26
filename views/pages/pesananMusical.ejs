@@ -1,0 +1,26 @@
+<%- include('../partials/head'); %> <%- include('../partials/header'); %>
+
+
+<section>
+  <div class="container">
+    <form>
+      <div class="row d-flex flex-column mb-3">
+        <div class="col pb-3">
+          <h3>Detail Pesanan</h3>
+        </div>
+        <div class="col-2">
+          <h5 for="name"><%= data.name %></h5>
+          <p><%= data.description %></p>
+          <label class="form-label">Jumlah pinjaman</label>
+          <input type="number" class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-success">Check Out</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+

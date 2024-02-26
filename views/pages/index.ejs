@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body id="home">
+    <header><%- include('../partials/header'); %></header>
+
+    <!-- jumbotron -->
+    <section
+      class="jumbotron text-center"
+      style="padding-top: 6rem; background-color: rgb(223, 134, 118)"
+    >
+      <h1 class="display-3 pb-2 fw-bold" style="font-family: 'Georgia', serif">
+        PEMINJAMAN ALAT MUSIK
+      </h1>
+      <img src="main.jpg" width="900" height="500" class="rounded" alt="..." />
+      <h1 class="display-4 pt-3">Rock and Roll!</h1>
+      <p class="lead">Let's Play With Us</p>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#fff"
+          fill-opacity="1"
+          d="M0,128L48,128C96,128,192,128,288,144C384,160,480,192,576,186.7C672,181,768,139,864,149.3C960,160,1056,224,1152,213.3C1248,203,1344,117,1392,74.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- jumbotron end -->
+
+    <!-- about -->
+    <section
+      id="about"
+      style="background-color: #fff; top: -2vw; position: relative"
+    >
+      <div class="container">
+        <div class="row text-center mb-3">
+          <div class="col">
+            <h2>About Us</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center fs-5">
+          <div class="col-md-4 mb-3">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+            amet accusantium soluta commodi nobis, atque id vel! Praesentium
+            sapiente sequi magnam pariatur quae optio perferendis.
+          </div>
+          <div class="col-md-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+            dignissimos ratione placeat beatae reiciendis reprehenderit
+            repudiandae.
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#DA8676"
+          fill-opacity="1"
+          d="M0,0L34.3,48C68.6,96,137,192,206,208C274.3,224,343,160,411,154.7C480,149,549,203,617,192C685.7,181,754,107,823,90.7C891.4,75,960,117,1029,117.3C1097.1,117,1166,75,1234,53.3C1302.9,32,1371,32,1406,32L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- about end -->
+
+    <!-- equipment -->
+    <section
+      id="equipment"
+      style="background-color: #da8676; top: -3vw; position: relative"
+    >
+      <div class="container">
+        <div class="row text-center">
+          <div class="col">
+            <h2>Equipment</h2>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <% if (data != '') { %>
+            <% data.forEach(instrument => { %>
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img class="card-img-top" src="<%= instrument.photo %>" alt="...">
+                  <div class="card-body p-4">
+                    <div>
+                      <h5 class="fw-bolder text-center"><%= instrument.name %></h5>
+                      <p><%= instrument.description %></p>
+                    </div>
+                  </div>
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <form action="/add-to-cart" method="post"> <div class="d-flex justify-content-between">
+                        <div class="input-group">
+                          <input type="number" name="quantity" id="quantity" class="form-control" value="0" min="1" style="width: 50px">
+                        </div>
+                        <button type="submit" class="btn btn-success btn-outline-dark mt-auto">Add to Cart</button> </div>
+                        <script>
+                          const quantityInput = document.getElementById('quantity');
+                          const submitButton = document.querySelector('button[type="submit"]');
+                  
+                          quantityInput.addEventListener('change', () => {
+                            if (quantityInput.value === '0') {
+                              submitButton.disabled = true;
+                              alert('Masukkan jumlah produk minimal 1.');
+                            } else {
+                              submitButton.disabled = false;
+                            }
+                          });
+                        </script>
+                  
+                    </form>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <h1 class="text-center text-secondary mt-5">
+              No users found in the database!
+            </h1>
+            <% } %>
+        </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#fff"
+          fill-opacity="1"
+          d="M0,192L48,202.7C96,213,192,235,288,218.7C384,203,480,149,576,138.7C672,128,768,160,864,170.7C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- equipment end -->
+
+    <!-- contact -->
+    <section
+      id="contact"
+      style="background-color: #fff; top: -4vw; position: relative"
+    >
+      <div class="container">
+        <div class="row text-center">
+          <div class="col mb-3">
+            <h2>Contact Me</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  aria-describedby="name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  aria-describedby="email"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pesan" class="form-label">Pesan</label>
+                <textarea class="form-control" id="pesan" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Kirim</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- contact end -->
+
+    <footer><%- include('../partials/footer'); %></footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

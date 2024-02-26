@@ -1,0 +1,68 @@
+<%- include('../partials/head'); %>
+
+<style>
+  .add {
+      position: fixed;
+      top: 10;
+      right: 0;
+      margin-top: 30px;
+      margin-right: 50px;
+      background-color: #35dc94; /* Background color */
+      padding: 10px; /* Padding to create some space around the content */
+      border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    }
+</style>
+
+<div class="container mt-5">
+  <div class="add position-absolute ">
+    <a href="/createuser" class="btn fw-bold">Create User</a>
+  </div>
+
+  <h1>User Search</h1>
+  <form action="/getUser" method="get">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <button type="submit">Search</button>
+  </form>
+
+  <% if (data) { %>
+    <!-- Jika pengguna ditemukan, tampilkan informasi pengguna -->
+    <h2>User Profile</h2>
+    <p>Username: <%= data.username %></p>
+    <!-- Tambahkan elemen HTML lainnya sesuai kebutuhan -->
+  <% } else if (error) { %>
+    <!-- Jika terjadi kesalahan, tampilkan pesan kesalahan -->
+    <p>Error: <%= error %></p>
+  <% } %>
+
+  <% if (data.length > 0) { %>
+    <ul class="list-group">
+      <% data.forEach(costumers => { %>
+        <!-- Customer Item -->
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img src="<%= costumers.photo %>" alt="Customer Image" class="rounded-circle" style="width: 50px; height: 50px;">
+            </div>
+            <div class="ms-3">
+              <h5 class="mb-0"><%= costumers.username %></h5>
+              <p class="text-muted mb-0"><%= costumers.email %></p>
+            </div>
+          </div>
+          <div>
+            <!-- <a href="/edituser/<%= costumers.id %>" class="btn btn-success custom-margin">Edit</a> -->
+            <a href="/deleteuser/<%= costumers.id %>" class="btn btn-danger">Hapus</a>
+          </div>
+        </li>
+        <!-- End Customer Item -->
+      <% }) %>
+    </ul>
+  <% } %>
+  
+</div>
+
+
+
+
+
+

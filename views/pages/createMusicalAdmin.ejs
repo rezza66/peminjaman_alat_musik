@@ -1,0 +1,32 @@
+<%- include('../partials/head'); %>
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-lg-6 mx-auto mt-4">
+            <div class="card shadow">
+                <div class="card-header" style="background-color: rgb(216, 108, 89);">
+                    <h5 class="text-light">Add New Musical</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/createmusicalinstrument" method="post" id="add-form" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter Name Musical" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Description</label>
+                            <input type="text" name="description" class="form-control form-control-lg" placeholder="Enter Description" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Select Image</label>
+                            <input type="file" name="photo" class="form-control form-control-lg" required/>
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" name="submit" value="Add Musical" class="btn btn-lg" style="background-color: rgb(231, 152, 41);"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

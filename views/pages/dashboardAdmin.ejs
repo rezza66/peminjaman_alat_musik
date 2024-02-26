@@ -1,0 +1,269 @@
+<%- include('../partials/head'); %> <%- include('../partials/headerAdmin'); %>
+
+<div id="layoutSidenav">
+  <%- include('../partials/sidebarAdmin') %>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="row">
+          <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+              <div class="card-body">Primary Card</div>
+              <div
+                class="card-footer d-flex align-items-center justify-content-between"
+              >
+                <a class="small text-white stretched-link" href="#"
+                  >View Details</a
+                >
+                <div class="small text-white">
+                  <i class="fas fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+              <div class="card-body">Warning Card</div>
+              <div
+                class="card-footer d-flex align-items-center justify-content-between"
+              >
+                <a class="small text-white stretched-link" href="#"
+                  >View Details</a
+                >
+                <div class="small text-white">
+                  <i class="fas fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+              <div class="card-body">Success Card</div>
+              <div
+                class="card-footer d-flex align-items-center justify-content-between"
+              >
+                <a class="small text-white stretched-link" href="#"
+                  >View Details</a
+                >
+                <div class="small text-white">
+                  <i class="fas fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+              <div class="card-body">Danger Card</div>
+              <div
+                class="card-footer d-flex align-items-center justify-content-between"
+              >
+                <a class="small text-white stretched-link" href="#"
+                  >View Details</a
+                >
+                <div class="small text-white">
+                  <i class="fas fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-chart-area me-1"></i>
+                Area Chart Example
+              </div>
+              <div class="card-body">
+                <canvas id="myAreaChart" width="100%" height="40"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Alat Musik Terfavorit
+              </div>
+              <div class="card-body">
+                <canvas id="myBarChart" width="100%" height="40"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            DataTable Example
+          </div>
+          <div class="card-body">
+            <table id="datatablesSimple">
+              <thead>
+                <tr>
+                  <th>Foto KTP</th>
+                  <th>Nama Peminjam</th>
+                  <th>Jenis Alat Musik</th>
+                  <th>Jumlah</th>
+                  <th>Tgl Pinjam</th>
+                  <th>Tgl Pengembalian</th>
+                  <th>Harga</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (users != '') { %> <% users.forEach(user => { %>
+                <tr>
+                  <td><img src="<% user.photo %>" alt="..." /></td>
+                  <td><% user.username %></td>
+                  <td><% user.email %></td>
+                  <td>61</td>
+                  <td>2011/04/25</td>
+                  <td>$320,800</td>
+                  <td>$320,800</td>
+                  <td>$320,800</td>
+                </tr>
+                <% }) %> <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Your Website 2024</div>
+          <div>
+            <a href="#">Privacy Policy</a>
+            &middot;
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- <script>
+  // Mengambil token dari session server dan menyimpannya dalam variabel JavaScript
+  
+  // Fetch ke endpoint yang dilindungi menggunakan token akses
+if (accessToken) {
+  fetch("http://localhost:4000/dashboard", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json", // Contoh header Content-Type
+    "Authorization": "Bearer <token>" // Contoh header Authorization dengan token
+    // Anda juga dapat menambahkan header lain sesuai kebutuhan
+  }
+})
+.then((response) => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then((data) => {
+  console.log(data);
+})
+.catch((error) => {
+  console.error("There has been a problem with your fetch operation:", error);
+});
+
+} else {
+  console.error("Access token not found in session.");
+}
+</script> -->
+
+<script>
+  // Mengambil token dari session server dan menyimpannya dalam variabel JavaScript
+  const accessToken = "<%= accessToken %>"; // Menggunakan variabel accessToken dari server
+  
+  // Fetch ke endpoint yang dilindungi menggunakan token akses
+  if (accessToken) {
+    fetch("http://localhost:4000/dashboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${accessToken}` // Menggunakan token akses yang diambil dari session
+        // Anda juga dapat menambahkan header lain sesuai kebutuhan
+      }
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("There has been a problem with your fetch operation:", error);
+      });
+  } else {
+    console.error("Access token not found in session.");
+  }
+</script>
+
+
+<!-- <script>
+
+  const cookieString = document.cookie;
+ console.log(cookieString); // Menampilkan semua cookie dalam satu string
+
+// Misalnya, untuk mengambil nilai cookie dengan nama "token":
+const tokenIndex = cookieString.indexOf("token");
+if (tokenIndex !== -1) {
+  const tokenValue = cookieString.substring(tokenIndex + 6).split(";")[0];
+  console.log(tokenValue.trim()); // Menampilkan nilai cookie "token"
+} else {
+  console.log("Cookie 'token' tidak ditemukan");
+}
+
+
+  // Fetch to protected endpoint using the accessToken
+  if (accessToken) {
+    fetch("http://localhost:4000/dashboard", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  } else {
+    console.error("Access token not found in cookies.");
+  }
+</script> -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+  crossorigin="anonymous"
+></script>
+<script src="/event_template/scripts.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+  crossorigin="anonymous"
+></script>
+<script src="/demo/chart-area-demo.js"></script>
+<script src="/demo/chart-bar-demo.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+  crossorigin="anonymous"
+></script>
+<script src="/event_template/datatables-simple-demo.js"></script>
