@@ -138,18 +138,21 @@ export const Login = async (req, res, next) => {
 
       const jti = uuidv4();
       const { accessToken, refreshToken } = generateTokens(existingUser, jti);
+      const token = {accessToken, refreshToken}
+      
       // await addRefreshTokenToWhitelist({
       //     jti,
       //     refreshToken,
       //     userId: existingUser.id,
       // });
-      req.session.accessToken = accessToken;
-      req.session.refreshToken = refreshToken;
-      // res.cookie('token', accessToken, { httpOnly: true });
-      // res.cookie('refreshToken', refreshToken, { httpOnly: true });
+      // req.session.accessToken = accessToken;
+      // req.session.refreshToken = refreshToken;
+      res.cookie('token', accessToken, { httpOnly: true });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true });
       // res.json({accessToken, refreshToken})
       // console.log(req.session)
-      return res.redirect('/dashboard');
+      
+      return res.redirect(`/dashboard?token=${token}`);
 
   } catch (error) {
       next(error);

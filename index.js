@@ -18,7 +18,7 @@ dotenv.config()
 var app = express();
 const port = process.env.PORT || 8000
 app.use(session({
-  secret: process.env.JWT_ACCESS_SECRET, // Ganti 'secret-key' dengan kunci rahasia yang kuat
+  secret: process.env.SESSION_SECRET, // Ganti 'secret-key' dengan kunci rahasia yang kuat
   resave: false,
   saveUninitialized: false,
 }));

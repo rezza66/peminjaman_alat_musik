@@ -64,11 +64,8 @@ export const getAllUser = async (req, res, next) => {
       }
     });
 
-    res.status(200).render("dashboardAdmin", {
-      success: true,
-      title: "Dashboard",
-      users: user,
-    })
+   res.locals.users = user;
+   next()
     // res.status(200).json(user);
   } catch (error) {
     next(error);
